@@ -92,7 +92,7 @@ final class WidgetViewController: NSViewController {
 
         timeLabel.font = .monospacedDigitSystemFont(ofSize: 11, weight: .medium)
         timeLabel.textColor = NSColor.white.withAlphaComponent(0.50)
-        timeLabel.alignment = .center
+        timeLabel.alignment = .right
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         root.addSubview(timeLabel)
 
@@ -107,6 +107,7 @@ final class WidgetViewController: NSViewController {
 
             statusLabel.leadingAnchor.constraint(equalTo: statusDot.trailingAnchor, constant: 8),
             statusLabel.centerYAnchor.constraint(equalTo: statusDot.centerYAnchor),
+            statusLabel.trailingAnchor.constraint(lessThanOrEqualTo: timeLabel.leadingAnchor, constant: -10),
 
             refreshButton.trailingAnchor.constraint(equalTo: root.trailingAnchor, constant: -20),
             refreshButton.topAnchor.constraint(equalTo: root.topAnchor, constant: 18),
@@ -128,8 +129,8 @@ final class WidgetViewController: NSViewController {
             bottomRow.topAnchor.constraint(equalTo: topRow.bottomAnchor, constant: 10),
             bottomRow.heightAnchor.constraint(equalToConstant: 68),
 
-            timeLabel.centerXAnchor.constraint(equalTo: root.centerXAnchor),
-            timeLabel.bottomAnchor.constraint(equalTo: root.bottomAnchor, constant: -13)
+            timeLabel.trailingAnchor.constraint(equalTo: root.trailingAnchor, constant: -20),
+            timeLabel.centerYAnchor.constraint(equalTo: statusDot.centerYAnchor)
         ])
     }
 
