@@ -56,6 +56,7 @@ final class WidgetViewController: NSViewController {
         titleLabel.font = .systemFont(ofSize: 24, weight: .bold)
         titleLabel.textColor = .white
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.addGestureRecognizer(NSClickGestureRecognizer(target: self, action: #selector(titleTapped)))
         root.addSubview(titleLabel)
 
         statusDot.translatesAutoresizingMaskIntoConstraints = false
@@ -140,6 +141,26 @@ final class WidgetViewController: NSViewController {
 
     @objc private func refreshTapped() {
         onRefreshRequested?()
+    }
+
+    @objc private func titleTapped() {
+        guard let dashboardURL = URL(string: "https://ai-pixel.online/dashboard") else {
+            return
+        }
+
+        let workspace = NSWorkspace.shared
+        guard let chromeURL = workspace.urlForApplication(withBundleIdentifier: "com.google.Chrome") else {
+            workspace.open(dashboardURL)
+            return
+        }
+
+        let configuration = NSWorkspace.OpenConfiguration()
+        configuration.activates = true
+        workspace.open([dashboardURL], withApplicationAt: chromeURL, configuration: configuration) { _, error in
+            if error != nil {
+                workspace.open(dashboardURL)
+            }
+        }
     }
 
     private static let timeFormatter: DateFormatter = {
