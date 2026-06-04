@@ -1,0 +1,23 @@
+# Xcode
+DerivedData/
+build/
+*.xcuserstate
+xcuserdata/
+*.moved-aside
+*.xccheckout
+*.xcscmblueprint
+
+# macOS
+.DS_Store
+
+# App build outputs
+*.app
+*.dSYM
+
+# Secrets and local files
+*.key
+*.pem
+*.p12
+*.mobileprovision
+local.env
+.env
