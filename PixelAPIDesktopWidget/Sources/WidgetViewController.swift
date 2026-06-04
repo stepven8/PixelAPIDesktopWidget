@@ -107,7 +107,7 @@ final class WidgetViewController: NSViewController {
 
             statusLabel.leadingAnchor.constraint(equalTo: statusDot.trailingAnchor, constant: 8),
             statusLabel.centerYAnchor.constraint(equalTo: statusDot.centerYAnchor),
-            statusLabel.trailingAnchor.constraint(lessThanOrEqualTo: timeLabel.leadingAnchor, constant: -10),
+            statusLabel.widthAnchor.constraint(equalToConstant: 70),
 
             refreshButton.trailingAnchor.constraint(equalTo: root.trailingAnchor, constant: -20),
             refreshButton.topAnchor.constraint(equalTo: root.topAnchor, constant: 18),
@@ -129,7 +129,7 @@ final class WidgetViewController: NSViewController {
             bottomRow.topAnchor.constraint(equalTo: topRow.bottomAnchor, constant: 10),
             bottomRow.heightAnchor.constraint(equalToConstant: 68),
 
-            timeLabel.trailingAnchor.constraint(equalTo: root.trailingAnchor, constant: -20),
+            timeLabel.leadingAnchor.constraint(equalTo: statusLabel.trailingAnchor, constant: 8),
             timeLabel.centerYAnchor.constraint(equalTo: statusDot.centerYAnchor)
         ])
     }
