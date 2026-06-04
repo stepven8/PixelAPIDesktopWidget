@@ -2,6 +2,8 @@
 
 这是一个使用 Xcode / AppKit 编写的 macOS 原生桌面浮窗应用，用来登录 Pixel API 控制台并显示核心用量数据。
 
+![Pixel API 桌面小组件截图](docs/images/widget-screenshot.png)
+
 ## 功能
 
 - 显示余额、今日消费、今日 Token、累计 Token。
@@ -59,9 +61,21 @@ xcodebuild \
 
 构建产物通常在 Xcode 的 DerivedData 目录里。也可以在 Xcode 里使用 `Product > Show Build Folder in Finder` 查找。
 
+### 5. 安装到“应用程序”
+
+只是在 Xcode 里运行，或只把 App 放在构建输出目录里，并不会自动出现在访达左侧的“应用程序”里。要让它像普通 App 一样出现在“应用程序”，需要把 `.app` 复制到 `/Applications`：
+
+```bash
+rm -rf /Applications/PixelAPIDesktopWidget.app
+cp -R path/to/PixelAPIDesktopWidget.app /Applications/PixelAPIDesktopWidget.app
+open /Applications
+```
+
+如果你是从当前仓库根目录按命令行构建，可以先在 Xcode 的构建目录里找到 `PixelAPIDesktopWidget.app`，再替换上面命令里的 `path/to/PixelAPIDesktopWidget.app`。
+
 ## 使用方法
 
-1. 启动 App。
+1. 双击 `/Applications/PixelAPIDesktopWidget.app`，或运行 `open /Applications/PixelAPIDesktopWidget.app`。
 2. 点击浮窗右上角“登录”。
 3. 输入 Pixel API 账号邮箱和密码。
 4. 登录成功后，浮窗会自动显示余额、今日消费、今日 Token、累计 Token。
@@ -91,6 +105,10 @@ security delete-generic-password \
 ```
 
 ## 常见问题
+
+### 为什么访达“应用程序”里没有这个 App？
+
+因为 Xcode 构建出来的 `.app` 默认在 DerivedData 或项目自己的输出目录里，不会自动安装到 `/Applications`。把 `PixelAPIDesktopWidget.app` 复制到 `/Applications` 后，访达“应用程序”里就能看到。
 
 ### 为什么别人打不开我发的 `.app`？
 
