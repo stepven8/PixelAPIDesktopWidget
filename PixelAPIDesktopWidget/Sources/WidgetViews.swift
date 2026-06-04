@@ -1,15 +1,17 @@
 import AppKit
 
 final class GlassPanelView: NSView {
+    override var isOpaque: Bool { false }
+
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
         wantsLayer = true
+        canDrawSubviewsIntoLayer = true
         layer?.cornerRadius = 26
         layer?.masksToBounds = false
-        layer?.shadowColor = NSColor.black.cgColor
-        layer?.shadowOpacity = 0.32
-        layer?.shadowRadius = 24
-        layer?.shadowOffset = CGSize(width: 0, height: -8)
+        layer?.backgroundColor = NSColor.clear.cgColor
+        layer?.isOpaque = false
+        layer?.shadowOpacity = 0
     }
 
     required init?(coder: NSCoder) {
@@ -17,8 +19,6 @@ final class GlassPanelView: NSView {
     }
 
     override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-
         let bounds = self.bounds.insetBy(dx: 0.5, dy: 0.5)
         let path = NSBezierPath(roundedRect: bounds, xRadius: 26, yRadius: 26)
 
