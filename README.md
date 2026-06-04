@@ -35,7 +35,7 @@ xcodebuild -version
 ### 2. 克隆仓库
 
 ```bash
-git clone <你的仓库地址>
+git clone https://github.com/stepven8/PixelAPIDesktopWidget.git
 cd PixelAPIDesktopWidget
 ```
 
@@ -121,4 +121,4 @@ security delete-generic-password \
 
 ## 许可
 
-当前未指定开源许可证。共享给他人使用前，建议补充 `LICENSE` 文件。
+本项目使用 MIT License，详见 `LICENSE` 文件。
